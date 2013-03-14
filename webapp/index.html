@@ -1,0 +1,111 @@
+<!--  Copyright (C) 2013 Mapyst
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License. -->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mapyst</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style-print.css" type="text/css" media="print">
+<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css" media="all">
+<link rel="shortcut icon" href="favicon.ico">
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.watermarkinput.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+<script src="js/jquery.client.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/json2.js"></script>
+
+<script type="text/javascript" src="js/webapp_compiled.js"></script>
+
+</head>
+<body onload="initialize()">
+    <ul id="header" class="unselectable">
+        <li><a href="http://www.mapyst.com"><img src="images/logo.png" /></a></li>
+        <li id="header-inputs">
+            <form>
+                <input id="header-inputs-search" type="text" name="search" value="" />
+                <div>
+                    <a id="header-inputs-searchButton" class="headerButton" onclick="doSearch()" href="#"></a>
+                </div>
+
+                <input id="header-inputs-start" type="text" name="start" value="" />
+                <input id="header-inputs-end" type="text" name="destination" value="" />
+                <div>
+                    <a id="header-inputs-directions" class="headerButton" onclick="getDirections()" href="#"></a>
+                </div>
+            </form>
+        </li>
+        <li id="header-prefs">
+                <a id="header-prefs-elevators" class="pref_button tooltip"><span>Prefer Elevators</span></a>
+                <a id="header-prefs-stairs" class="pref_button tooltip"><span>Prefer Stairs</span></a>
+                <a id="header-prefs-hand" class="pref_button tooltip"><span>Handicapped Accessible</span></a>
+                <a id="header-prefs-outside" class="pref_button tooltip"><span>Prefer Outside</span></a>
+                <a id="header-prefs-inside" class="pref_button tooltip"><span>Prefer Inside</span></a>
+        </li>
+        <li id="header-actions">
+            <a id="header-actions-print" class="tooltip" onclick="enterPrintPreview()" href="#"><span>Print Preview</span></a>
+            <a id="header-actions-contact" class="tooltip" href="mailto:support@mapyst.com"><span>Contact Us</span></a>
+        </li>
+    </ul>
+    <div id="bottom">
+        <div id="info">
+            <div id="info-top"></div>
+            <div id="info-content">
+                <div id="info-text"></div>
+            </div>
+            <div id="info-bottom"></div>
+            <a id="info-close" onclick="closeInfo()"></a>
+        </div>
+        <div id="suggestions">
+            <div id="suggestions-top"></div>
+            <div id="suggestions-content_div">
+                <ul id="suggestions-content"></ul>
+            </div>
+            <div id="suggestions-bottom"></div>
+        </div>
+        <div id="sidebar">
+            <div id="sidebar-locations">
+                <h2 id="sidebar-locations-title" class="unselectable">Locations</h2>
+                <a id="sidebar-locations-back" onclick="locationsBack()"></a>
+                <select id="sidebar-locations-list" size="15"></select>
+                <a id="sidebar-locations-start" class="button" onclick="setAsStart()"></a>
+                <a id="sidebar-locations-destination" class="button" onclick="setAsEnd()"></a>
+            </div>
+            <ul id="sidebar-directions"></ul>
+            <div id="sidebar-tabs">
+                <a id="sidebar-tabs-locations" onclick="showLocationsTab()"></a>
+                <a id="sidebar-tabs-directions" onclick="showDirectionsTab()"></a>
+            </div>
+        </div>
+        <div id="map">
+            <div id="map-canvas"></div>
+            <div id="map-floor" class="unselectable">Floor</div>
+            <div id="map-controls" class="unselectable">
+                <a id="map-controls-previous" onclick="previousDirection()"></a>
+                <p id="map-controls-current" onclick="currentDirection()">Current Direction</p>
+                <a id="map-controls-next" onclick="nextDirection()"></a>
+            </div>
+        </div>
+    </div>
+    <div id="printing">
+        <img src="images/logo.png" />
+        <a id="printing-print" onclick="printPage()"></a>
+        <a id="printing-back" onclick="exitPrintPreview()"></a>
+        <div id="printing-content"></div>
+    </div>
+</body>
+</html>

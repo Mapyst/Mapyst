@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:orientation="vertical" android:minWidth="300dp" background="#CC000000">
+
+	<ScrollView android:id="@+id/dialog_scroll"
+		android:layout_width="fill_parent" android:layout_below="@+id/dialog_title"
+		android:layout_height="wrap_content" android:background="#CC000000">
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:background="#CC000000" android:gravity="center">
+
+			<TextView android:id="@+id/dialog_content"
+				android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+			<Button android:id="@+id/dialog_seeOnMap"
+				android:layout_below="@id/dialog_scroll" android:layout_width="200dp"
+				android:layout_height="wrap_content" android:text="See On Map"
+				android:onClick="@string/buttonHandler" android:layout_marginTop="10dp" />
+
+
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="#CC000000" android:layout_centerHorizontal="true">
+
+				<Button android:id="@+id/dialog_setStart"
+					android:layout_marginTop="3dip" android:layout_width="fill_parent"
+					android:layout_weight="1" android:layout_height="wrap_content"
+					android:singleLine="true" android:text="Set As Start"
+					android:onClick="@string/buttonHandler" />
+
+				<Button android:id="@+id/dialog_setEnd"
+					android:layout_marginTop="3dip" android:layout_width="fill_parent"
+					android:layout_weight="1" android:layout_height="wrap_content"
+					android:singleLine="true" android:text="Set As End"
+					android:onClick="@string/buttonHandler" />
+
+			</LinearLayout>
+
+		</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>

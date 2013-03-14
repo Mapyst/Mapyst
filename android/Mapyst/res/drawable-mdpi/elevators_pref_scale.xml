@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+	android:scaleWidth="50%" android:scaleHeight="50%"
+	android:drawable="@drawable/elevators_pref">
+</scale>

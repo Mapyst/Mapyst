@@ -1,0 +1,577 @@
+/*
+ * Copyright (C) 2013 Mapyst
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+html { height: 100% }
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #FFFFFF;
+	font-family: sans-serif;
+}
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -o-user-select: none;
+   user-select: none;
+}
+
+#header {
+	width: 100%; height: 120px;
+	margin: 0px; padding: 0px;
+	position: absolute; top: 0px; left: 0px;
+   	background: url(../images/topBackground.png) repeat-x;
+}
+#header img {
+	float: left;
+	border: 0;
+}
+#header li {
+	display: inline;
+	float: left;
+	padding: 20px;
+}
+
+#header-inputs { position: absolute; top: 0px; left: 150px; }
+
+#header-inputs form input {
+	/*margin-left: 30px; */
+	padding:4px 8px;
+	border: 0;
+	background: url(../images/inputBacks.png) no-repeat;
+	width: 184px; height: 17px;
+	position: absolute;
+}
+
+#header-inputs-search {
+	top: 20px; left: 50px;
+}
+#header-inputs-start {
+	top: 5px; left: 290px;
+}
+#header-inputs-end {
+	top: 35px; left: 290px;
+}
+
+#header-inputs-directions {
+	position: absolute; top: 65px; left: 330px;
+	background: url(../images/buttons/directions.png) no-repeat;
+}
+#header-inputs-directions:active {
+	background-position: 0px -37px;
+}
+#header-inputs-searchButton {
+	position: absolute; top: 65px; left: 85px;
+	background: url(../images/buttons/search.png) no-repeat;
+}
+#header-inputs-searchButton:active {
+	background-position: 0px -37px;
+}
+.headerButton {
+	display: block;
+	width: 127px; height: 37px;
+	cursor: default;
+}
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto; overflow-x: hidden;
+	padding-right: 20px;
+}
+
+
+#header-prefs { width: 120px; }
+
+/*Elevator Preference*/
+#header-prefs-elevators {
+	position: absolute; top: 5px; left: 700px;
+	background-image: url(../images/prefs/elevators_pref.png);
+	background-repeat: no-repeat;
+}
+#header-prefs-elevators:active {
+	background-position: 0px -51px;
+}
+
+/*Stairs Preference*/
+#header-prefs-stairs {
+	position: absolute; top: 5px; left: 748px;
+	background-image: url(../images/prefs/stairs_pref.png);
+	background-repeat: no-repeat;
+}
+#header-prefs-stairs:active {
+	background-position: 0px -51px;
+}
+
+/*Handicapped Preference*/
+#header-prefs-hand {
+	position: absolute; top: 5px; left: 796px;
+	background-image: url(../images/prefs/hand_pref.png);
+	background-repeat: no-repeat;
+}
+#header-prefs-hand:active {
+	background-position: 0px -51px;
+}
+
+/*Outside Preference*/
+#header-prefs-outside {
+	position: absolute; top: 59px; left: 724px;
+	background-image: url(../images/prefs/outside_pref.png);
+	background-repeat: no-repeat;
+}
+#header-prefs-outside:active {
+	background-position: 0px -51px;
+}
+
+/*Inside Preference*/
+#header-prefs-inside {
+	position: absolute; top: 59px; left: 772px;
+	background-image: url(../images/prefs/inside_pref.png);
+	background-repeat: no-repeat;
+}
+#header-prefs-inside:active {
+	background-position: 0px -51px;
+}
+
+.pref_button {
+	display: block;
+	width: 50px; height: 50px;
+}
+
+#header-actions-print {
+	width: 50px; height: 50px;
+	position: absolute; top: 28px; left: 910px;
+	background: url(../images/buttons/printButton.png) no-repeat;
+	cursor: default;
+	text-decoration: none;
+}
+#header-actions-print:active {
+	background-position: 0px -51px;
+}
+
+#header-actions-contact {
+	width: 50px; height: 50px;
+	position: absolute; top: 28px; left: 958px;
+	background: url(../images/buttons/contactButton.png) no-repeat;
+	cursor: default;
+	text-decoration: none;
+}
+#header-actions-contact:active {
+	background-position: 0px -51px;
+}
+
+#header-actions-link {
+	width: 40px; height: 40px;
+	position: absolute; top: 32px; left: 988px;
+	background: url(../images/buttons/linkButton.png) no-repeat;
+}
+#header-actions-link:active {
+	background-position: 0px -39px;
+}
+
+#header-share {
+	position: absolute; top: 35px; left: 1060px;
+}
+
+.tooltip span {
+	display: none;
+	padding: 2px 3px;
+	margin-left: 8px; margin-top: 50px;
+	z-index: 10;
+	text-align: center;
+}
+.tooltip:hover span{
+	display: inline;
+	position: absolute;
+	background: #ffffff;
+	border: 1px solid #555555;
+	color:#6c6c6c;
+}
+.tooltip:active span{
+	display: inline;
+	position: absolute;
+	background: #ffffff;
+	border: 1px solid #555555;
+	color:#6c6c6c;
+}
+
+#header-logout {
+	position: absolute; top: 0px; left: 1000px;
+}
+
+
+
+
+
+
+#bottom {
+	position: absolute; top: 120px; left: 0px;
+	width: 100%; height: 100%;
+}
+
+#sidebar {
+	padding: 20px;
+	width: 230px;
+	position: absolute; top: 0px; left: 0px;
+	background: url(../images/leftBack.png) repeat-y;
+}
+
+#sidebar-tabs {
+	width: 260px; height: 40px;
+	position: absolute; top: 0px; left: 0px;
+	cursor: pointer;
+}
+#sidebar-tabs-locations {
+	width: 130px; height: 30px;
+	position: absolute; top: 0px; left: 0px;
+	display: block;
+	background: url(../images/locationsTab.png) no-repeat;
+	background-position: 0px -30px;
+}
+#sidebar-tabs-locations:active {
+	background-position: 0px -30px;
+}
+#sidebar-tabs-directions {
+	width: 130px; height: 30px;
+	position: absolute; top: 0px; left: 130px;
+	display: block;
+	background: url(../images/directionsTab.png) no-repeat;
+}
+#sidebar-tabs-directions:active {
+	background-position: 0px -30px;
+}
+
+
+
+#sidebar-locations {
+	position: absolute; top: 20px; left: 0px;
+	width: 100%;
+}
+#sidebar-locations-title {
+	position: absolute; top: 10px; left: 60px;
+}
+#sidebar-locations-back {
+	display: block;
+	width: 36px; height: 26px;
+	position: absolute; top: 30px; left: 10px;
+	background: url(../images/buttons/backArrow.png) no-repeat;
+}
+#sidebar-locations-back:active {
+	background-position: 0px -27px;
+}
+#sidebar-locations-list {
+	background: transparent;
+   	background-image: url(../images/listBackground.png);
+   	padding: 5px;
+   	font-size: 16px;
+   	border: 3px solid #2F446E;
+   	width: 210px; height: 300px;
+   	position: absolute; top: 70px; left: 20px;
+   	overflow-x: scroll;
+}
+
+.button {
+	display: block;
+	width: 84px; height: 34px;
+}
+#sidebar-locations-start {
+	width: 129px; height: 34px;
+	position: absolute; top: 390px; left: 60px;
+	background: url(../images/buttons/setStart.png) no-repeat;
+}
+#sidebar-locations-start:active {
+	background-position: 0px -33px;
+}
+#sidebar-locations-destination {
+	width: 129px; height: 34px;
+	position: absolute; top: 430px; left: 60px;
+	background: url(../images/buttons/setDestination.png) no-repeat;
+}
+#sidebar-locations-destination:active {
+	background-position: 0px -33px;
+}
+
+
+
+
+
+#sidebar-directions {
+	position: absolute; top: 30px; left: 0px;
+	width: 260px;
+	margin: 0px; padding: 0px;
+	list-style-type: none;
+	overflow-y: auto; overflow-x: hidden;
+}
+.dirListHeader {
+	width: 249px; /*height: 68px;*/
+	border-bottom: 2px solid #2F446E;
+	background: #777;
+	padding: 5px;
+	color: #FFF;
+}
+.dirListHeader p {
+	text-align: right;
+	margin: 0px 10px 0px 0px;
+}
+.dirListItem {
+	width: 249px;
+	border-bottom: 2px solid #2F446E;
+	padding: 5px;
+	font-size: 14;
+	cursor: pointer;
+}
+.dirListItem img {
+	width: 35px; height: 35px;
+	padding: 5px;
+	float: left;
+}
+.activeDirListItem {
+	width: 249px;
+	border-bottom: 2px solid #2F446E;
+	padding: 5px;
+	font-size: 14;
+	background: #2F446E;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+.activeDirListItem img {
+	width: 35px; height: 35px;
+	padding: 5px;
+	float: left;
+}
+.dirListItem p {
+	text-align: right;
+	margin: 0px 10px 0px 0px;
+}
+.activeDirListItem p {
+	text-align: right;
+	margin: 0px 10px 0px 0px;
+}
+
+
+
+
+
+#map {
+	margin: 0px;
+	position: absolute; top: 0px; left: 270px;
+	width: 100%; height: 100%;
+}
+#map-canvas {
+	position: absolute; top: 0px; left: 0px;
+	z-index: 1;
+}
+#map-overlay {
+	position: absolute; top: 0px; left: 0px;
+	z-index: 2;	
+}
+
+#map-controls {
+	position: absolute; top: 400px; left: -1px;
+	width: 500px; height: 80px;
+	z-index: 3;
+	background: #2F446E;
+	color: #FFFFFF;
+	border: 2px solid #B7CDDF;
+}
+#map-controls-previous {
+	position: absolute; top: 10px; left: 10px;
+	display: block;
+	width: 96px; height: 57px;
+	background: url(../images/buttons/arrowLeft.png) no-repeat;
+}
+#map-controls-previous:active {
+	background-position: 0px -58px;
+}
+#map-controls-next {
+	position: absolute; top: 10px; left: 394px;
+	display: block;
+	width: 96px; height: 57px;
+	background: url(../images/buttons/arrowRight.png) no-repeat;
+}
+#map-controls-next:active {
+	background-position: 0px -58px;
+}
+#map-controls-current {
+	position: absolute; top: 15px; left: 450px;
+	font-size: 25px; font-style: bold;
+	padding: 0px; margin: 0;
+	width: 280px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#map-floor {
+	position: absolute; top: 30px; left: 100px;
+	background: #2F446E;
+	color: #FFFFFF;
+	border: 2px solid #B7CDDF;
+	z-index: 4;
+	font-size: 24px;
+	font-style: bold;
+	height: 30px;
+	padding: 10px;
+	visibility: hidden;
+	cursor: default;
+}
+
+
+
+
+
+
+
+
+#info {
+	background: transparent;
+	margin:0px auto;
+   	width: 300px; height: 300px;
+   	position: absolute; top: 110px; left: 240px;
+   	z-index: 2;
+   	visibility: hidden;
+}
+#info-top {
+	width: 100%; height: 20px;
+	background:url(../images/popup/top.png) no-repeat left top;
+}
+#info-content {
+	position: relative;
+	background: url(../images/popup/middle.png) repeat-y right top;
+	margin: 0px; padding: 1px 20px 1px 25px;
+}
+#info-text {
+	margin: 0px 8px 0px 0px;
+	height: 260px;
+	overflow: auto;
+}
+#info-bottom {
+	height: 20px;
+	background: url(../images/popup/bottom.png) no-repeat left bottom;
+}
+#info-close {
+	display: block;
+	width: 15px; height: 15px;
+	position: absolute; top: 12px; left: 270px;
+	background: url(../images/popup/closePopup.png) no-repeat;
+}
+
+
+
+
+
+#suggestions {
+	background: transparent;
+	margin:0px auto;
+   	width: 300px; height: 300px;
+   	position: absolute; top: 110px; left: 240px;
+   	z-index: 2;
+   	visibility: hidden;
+}
+#suggestions-top {
+	width: 100%; height: 20px;
+	background:url(../images/popup/top.png) no-repeat left top;
+}
+#suggestions-content_div {
+	position: relative;
+	background: url(../images/popup/middle.png) repeat-y right top;
+	padding: 1px 20px 1px 25px;
+	margin: 0px;
+	height: 260px;
+}
+#suggestions-content {
+	list-style-type: none;
+	margin: 0px; padding: 0px;
+	width: 260px; height: 260px;
+	overflow: auto;
+}
+.suggestion {
+	font-weight: bold;
+	width: 230px;
+	border-bottom: 2px solid #2F446E;
+	padding: 5px;
+	font-size: 14;
+	cursor: pointer;
+}
+.suggestions_title {
+	font-weight: bold;
+	width: 230px;
+	border-bottom: 2px solid #2F446E;
+	padding: 5px;
+	font-size: larger;
+}
+#suggestions-bottom {
+	height: 20px;
+	background: url(../images/popup/bottom.png) no-repeat left bottom;
+}
+
+
+
+
+
+
+#printing {
+	position: absolute; top: 120px; left: 0px;
+	visibility: hidden;
+}
+
+#printing img {
+	position: absolute; top: 0px; left: 420px;
+}
+
+#printing-content {
+	position: absolute; top: 75px; left: 0px;
+}
+
+.print_direction {
+	width: 1000px; height: 300px;
+	position: absolute; left: 0px;
+	border: 2px solid #2F446E;
+}
+
+.print_direction p {
+	position: absolute; left: 400px; top: 0px;
+	width: 600px; height: 300px;
+	font-size: 30px;
+	text-align: center;
+}
+.print_direction p i {
+	color: #555;
+}
+
+.print_map {
+	position: absolute; top: 0px; left: 0px;
+	width: 400px; height: 300px;
+}
+
+#printing-print {
+	display: block;
+	position: absolute; top: 10px; left: 770px;
+	width: 105px; height: 35px;
+	background: url(../images/buttons/print.png) no-repeat;
+}
+#printing-print:active {
+	background-position: 0px -35px;
+}
+#printing-back {
+	display: block;
+	position: absolute; top: 10px; left: 890px;
+	width: 105px; height: 35px;
+	background: url(../images/buttons/back.png) no-repeat;
+}
+#printing-back:active {
+	background-position: 0px -35px;
+}

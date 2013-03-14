@@ -1,0 +1,1 @@
+java -jar "C:\Program Files (x86)\closure\compiler.jar" --js mapyst.js routeOverlay.js preferences.js events.js locationsList.js routeDisplay.js directionsList.js suggestions.js mapAnimator.js printing.js --js_output_file webapp_compiled.js

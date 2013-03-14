@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:id="@+id/rootLayout">
+
+	<com.markupartist.android.widget.ActionBar
+		android:id="@+id/mainActionBar" style="@style/ActionBar" />
+	<com.mapyst.android.ui.SlidingScrollView
+		android:id="@+id/slidingScrollView" android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+
+
+		<LinearLayout android:id="@+id/locationsListLayout"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:background="@+color/white" android:orientation="vertical">
+
+			<LinearLayout android:id="@+id/locationsTop"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:background="@+color/white" android:orientation="horizontal">
+			
+				<Button android:id="@+id/locationsBack"
+					android:onClick="@string/buttonHandler"
+					android:text="" android:clickable="true"
+					android:background="@drawable/locationsback"
+					android:layout_marginTop="3dp" android:layout_marginLeft="3dp"
+					android:layout_marginRight="0dp" android:layout_height="wrap_content"
+					android:layout_width="wrap_content" android:visibility="gone"/>
+			
+				<TextView android:id="@+id/locationTypeText"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:text="All Locations" android:textColor="#000000"
+					android:textSize="22sp" android:layout_marginLeft="5dp"
+					android:layout_marginTop="5dp" android:layout_marginBottom="5dp" />
+				
+			</LinearLayout>
+
+			<View android:id="@+id/locationsLine" android:layout_height="1dip"
+				android:layout_width="fill_parent" android:layout_below="@+id/locationTypeText"
+				android:background="#000000" />
+
+			<com.mapyst.android.ui.LocationsListView
+				android:id="@+id/locationsList" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:layout_below="@+id/locationsLine"
+				android:cacheColorHint="#FFFFFF" />
+		</LinearLayout>
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:id="@+id/mainScreenLayout"
+			android:gravity="bottom" android:background="@+color/white">
+
+
+			
+			<com.mapyst.android.ui.map.PriorityMapView android:id="@+id/mapView" android:orientation="horizontal"
+				android:enabled="true" android:clickable="true"
+				android:layout_above="@+id/locsPrefsLayout" android:apiKey=""
+				android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
+			<RelativeLayout android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:layout_above="@+id/locsPrefsLayout"
+				android:layout_below="@+id/inputLayout">
+				<LinearLayout android:id="@+id/prefsLayout"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:orientation="vertical" android:layout_alignParentRight="true"
+					android:layout_centerVertical="true">
+
+					<ToggleButton android:id="@+id/elevatorsPref"
+						android:onClick="@string/buttonHandler" android:clickable="true"
+						android:background="@drawable/elevators_pref_button"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:textOn="" android:textOff="" />
+
+					<ToggleButton android:id="@+id/stairsPref"
+						android:onClick="@string/buttonHandler" android:clickable="true"
+						android:background="@drawable/stairs_pref_button"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:textOn="" android:textOff="" android:layout_marginBottom="0dp" />
+
+					<ToggleButton android:id="@+id/handPref"
+						android:onClick="@string/buttonHandler" android:clickable="true"
+						android:background="@drawable/hand_pref_button"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:textOn="" android:textOff="" android:layout_marginBottom="20dp" />
+
+					<ToggleButton android:id="@+id/outsidePref"
+						android:onClick="@string/buttonHandler" android:clickable="true"
+						android:background="@drawable/outside_pref_button"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:textOn="" android:textOff="" />
+
+					<ToggleButton android:id="@+id/insidePref"
+						android:onClick="@string/buttonHandler" android:clickable="true"
+						android:background="@drawable/inside_pref_button"
+						android:layout_height="wrap_content" android:layout_width="wrap_content"
+						android:textOn="" android:textOff="" />
+
+				</LinearLayout>
+			</RelativeLayout>
+
+			<RelativeLayout android:id="@+id/inputLayout"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:app="http://schemas.android.com/apk/res/com.mapyst.android"
+				android:background="#AAFFFFFF" android:layout_centerHorizontal="true">
+
+				<LinearLayout android:id="@+id/startLayout"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:orientation="horizontal" android:layout_centerHorizontal="true"
+					android:layout_marginTop="5dp">
+
+					<!-- Hack to lose focus of edit-texts -->
+					<LinearLayout android:focusable="true"
+						android:focusableInTouchMode="true" android:layout_width="0px"
+						android:layout_height="0px" />
+
+
+					<AutoCompleteTextView android:id="@+id/startText"
+						android:layout_width="0dp" android:layout_weight="1"
+						android:layout_height="wrap_content" android:layout_marginLeft="20dp"
+						android:layout_marginRight="0dp" android:text=""
+						android:maxLines="3" android:hint="Start" android:imeOptions="actionNext" />
+
+					<Button android:id="@+id/startCurLoc" android:textColor="#FFFFFF"
+						android:layout_height="40dp" android:onClick="@string/buttonHandler"
+						android:text="" android:clickable="true" android:background="@drawable/current_loc_button"
+						android:layout_width="40dp" android:layout_marginLeft="20dp"
+						android:layout_marginRight="20dp" />
+
+				</LinearLayout>
+
+				<LinearLayout android:id="@+id/endLayout"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layout_below="@+id/startLayout" android:orientation="horizontal"
+					android:layout_centerHorizontal="true">
+
+					<AutoCompleteTextView android:id="@+id/endText"
+						android:layout_width="0dp" android:layout_weight="1"
+						android:layout_height="wrap_content" android:layout_marginLeft="20dp"
+						android:layout_marginRight="0dp" android:maxLines="3"
+						android:hint="Destination" android:text=""
+						android:imeOptions="actionSearch" />
+
+					<Button android:id="@+id/getDirectionsButton"
+						android:textColor="#FFFFFF" android:layout_height="40dp"
+						android:onClick="@string/buttonHandler" android:text=""
+						android:clickable="true" android:background="@drawable/get_directions_button"
+						android:layout_width="40dp" android:layout_marginLeft="20dp"
+						android:layout_marginRight="20dp" />
+
+
+
+				</LinearLayout>
+
+			</RelativeLayout>
+
+			<View android:id="@+id/leftLine" android:layout_width="2dip"
+				android:layout_height="fill_parent" android:background="#000000" />
+			<View android:id="@+id/rightLine" android:layout_width="2dip"
+				android:layout_height="fill_parent" android:layout_toRightOf="@+id/mapView"
+				android:background="#000000" />
+
+			<LinearLayout android:id="@+id/locsPrefsLayout"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:orientation="horizontal" android:layout_centerHorizontal="true"
+				android:background="#FFFFFF" android:layout_alignParentBottom="true">
+
+				<Button android:id="@+id/locsButton" android:textColor="#FFFFFF"
+					android:textStyle="bold" android:onClick="@string/buttonHandler"
+					android:text="Locations" android:clickable="true"
+					android:background="@drawable/locs_prefs_button"
+					android:layout_marginTop="0dp" android:layout_marginLeft="0dp"
+					android:layout_marginRight="0dp" android:layout_height="wrap_content"
+					android:layout_width="0dp" android:layout_weight="1" />
+
+				<Button android:id="@+id/prefsButton" android:textColor="#FFFFFF"
+					android:textStyle="bold" android:onClick="@string/buttonHandler"
+					android:text="Preferences" android:clickable="true"
+					android:background="@drawable/locs_prefs_button"
+					android:layout_marginTop="0dp" android:layout_marginLeft="0dp"
+					android:layout_marginRight="0dp" android:layout_height="wrap_content"
+					android:layout_weight="1" android:layout_width="0dp" />
+
+			</LinearLayout>
+
+
+			<RelativeLayout android:id="@+id/directionLayout"
+				android:orientation="horizontal" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:gravity="bottom"
+				android:layout_alignParentBottom="true" android:visibility="gone"
+				android:background="#AAFFFFFF" android:paddingLeft="10dp"
+				android:paddingRight="10dp">
+				<Button android:background="@drawable/left_arrow_selector"
+					android:id="@+id/leftArrow" android:layout_height="wrap_content"
+					android:layout_width="wrap_content" android:layout_centerVertical="true"
+					android:layout_alignParentLeft="true">
+				</Button>
+				<ImageView android:id="@+id/directionStart" android:src="@drawable/start"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true" />
+				<com.mapyst.android.ui.DirectionIcon
+					android:id="@+id/directionIcon" android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:layout_centerHorizontal="true">
+				</com.mapyst.android.ui.DirectionIcon>
+				<Button android:background="@drawable/right_arrow_selector"
+					android:layout_height="wrap_content" android:id="@+id/rightArrow"
+					android:layout_width="wrap_content" android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"></Button>
+				<ImageView android:id="@+id/directionEnd" android:src="@drawable/end"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true" />
+			</RelativeLayout>
+
+		</RelativeLayout>
+	</com.mapyst.android.ui.SlidingScrollView>
+</LinearLayout>

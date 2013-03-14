@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mapyst</string>
+	<string name="buttonHandler">onClickHandler</string>
+	<string name="imageButtonHandler">onImageClickHandler</string>
+	<string name="configure_intro">Images Widget Configuration</string>
+	<string name="configure_update">Update Time</string>
+	<string name="udpate_rate_hint">value in seconds</string>
+	<string name="save_config">Save</string>
+</resources>

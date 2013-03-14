@@ -1,0 +1,47 @@
+/*
+ * Copyright (C) 2013 Mapyst
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.mapyst.android;
+
+import com.mapyst.campus.Campus;
+import com.mapyst.route.RouteFinder;
+import com.mapyst.route.Route;
+
+import android.app.Application;
+
+public class Mapyst extends Application {
+
+	public Campus campus;
+	public Route route;
+	private RouteFinder routeFinder;
+
+	// these 2 variables are for switching from the DirectionsList to the route
+	// display
+	public int currentDir;
+	public boolean backFromDirList;
+
+	public Mapyst() {
+		super();
+		Campus.fileHandler = new AndroidFileHandler(this);
+	}
+
+	public RouteFinder getRouteFinder() {
+		if (routeFinder == null) {
+			routeFinder = new RouteFinder(campus);
+		}
+		return routeFinder;
+	}
+}

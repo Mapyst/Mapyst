@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory android:title="Settings">
+                <CheckBoxPreference
+                		android:title="Show notification bar"
+                		android:defaultValue="true"
+                		android:key="notificationBarCheckbox" />
+                <CheckBoxPreference
+                		android:title="Enable compass"
+                		android:defaultValue="false"
+                		android:summary="Experimental"
+                		android:key="compassBox" />
+        </PreferenceCategory>
+</PreferenceScreen>

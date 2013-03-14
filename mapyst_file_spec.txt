@@ -1,0 +1,45 @@
+Mapyst Binary File Specification for Graph Data
+version 1
+
+Format:
+- numbers in left column indicate the number of bytes occupied by the data in the right column
+- the right column describes the significance of the data
+
+
+
+FILE DEFINITION:
+4 : value of 605543491 (2417DC43) (a random number to make sure the file is formatted correctly)
+1 : file specification version
+1 : file type (0 -> floor, 1 -> building, 2 -> campus)
+1 : building index
+1 : floor index
+
+if (file type == floor)
+    2 : number of vertices
+    ? : list of vertices
+
+2 : number of edges
+? : list of edges
+
+
+VERTEX DEFINITION:
+4 : latitude * 10^6
+4 : longitude * 10^6
+? : list of room strings (a comma seperated list of strings, Null terminated)
+
+
+
+EDGE DEFINITION:
+if (file type == campus)
+    1 : building 1 index
+    1 : building 2 index
+
+if (file type == campus or building)
+    1 : floor 1 index
+    1 : floor 2 index
+
+2 : vertex 1 index
+2 : vertex 2 index
+4 : time from 1 to 2
+4 : time from 2 to 1
+1 : terrain
