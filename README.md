@@ -33,19 +33,19 @@ It also requires a JSON file with information about the campus. See the Campus J
 Campus JSON File
 ----------------
 The campus JSON file stores information about the campus including: all the buildings, floors, and locations. See the example file called example_campus.json in the data_format folder. The following notes describe some of the parameters in the file:
-    * "x" represents longitude and is equal to the longitude x 1,000,000 so that it can be represented as an integer
-    * "y" represents latitude and is equal to the latitude x 1,000,000 so that it can be represented as an integer
-    * Building
-        * "type" is a constant describing the type of a building (can be looked up in the source code: Building.java)
-    * Floor
-        * "load_if_close" determines whether a floor will be loaded if the floor is close to the start or end locations (or in between). This parameter improves the algorithm performance by not loading floor which will never contain any part of the shortest path in a scenario. For example, the top floor of a building (that is not connected to another building) will never contain the shortest path if the start and end locations are not in that building.
-        * "northWest" is the top left corner of the floor and "southEast" is the bottom right corner of the floor. This lets the algorithm know where the floor is for optimizations (and tells the frontend where to draw the floor).
-    * Location
-        * "hours" tells the frontend when the location is open in the format "days:hours days:hours ...". See examples:
-            * MT:8:30am-5pm WF:8:30am-5pm Sa:10am-5pm
-            * MTWThF:8am-8pm
-            * MTWThF:6am-Midnight, Midnight-2am SaS:9am-Midnight, Midnight-2am
-            * MTWTh:24 Hours F:Closes 9pm Sa:10am-5pm S:Opens Noon
-        * "is_direction_end" determines whether to break up a route if the route passes through one of the location's waypoints
-        * "waypoints" is a list of waypoints associated with this location (every location must have at least one waypoint associated with it)
-            * A waypoint is identified by its index in the list of buildings, index in the list of floors, and the index of that point in the list of points of that floor. The list of points is located in the floor's binary file.
+* "x" represents longitude and is equal to the longitude x 1,000,000 so that it can be represented as an integer
+* "y" represents latitude and is equal to the latitude x 1,000,000 so that it can be represented as an integer
+* Building
+    * "type" is a constant describing the type of a building (can be looked up in the source code: Building.java)
+* Floor
+    * "load_if_close" determines whether a floor will be loaded if the floor is close to the start or end locations (or in between). This parameter improves the algorithm performance by not loading floor which will never contain any part of the shortest path in a scenario. For example, the top floor of a building (that is not connected to another building) will never contain the shortest path if the start and end locations are not in that building.
+    * "northWest" is the top left corner of the floor and "southEast" is the bottom right corner of the floor. This lets the algorithm know where the floor is for optimizations (and tells the frontend where to draw the floor).
+* Location
+    * "hours" tells the frontend when the location is open in the format "days:hours days:hours ...". See examples:
+        * MT:8:30am-5pm WF:8:30am-5pm Sa:10am-5pm
+        * MTWThF:8am-8pm
+        * MTWThF:6am-Midnight, Midnight-2am SaS:9am-Midnight, Midnight-2am
+        * MTWTh:24 Hours F:Closes 9pm Sa:10am-5pm S:Opens Noon
+    * "is_direction_end" determines whether to break up a route if the route passes through one of the location's waypoints
+    * "waypoints" is a list of waypoints associated with this location (every location must have at least one waypoint associated with it)
+        * A waypoint is identified by its index in the list of buildings, index in the list of floors, and the index of that point in the list of points of that floor. The list of points is located in the floor's binary file.
