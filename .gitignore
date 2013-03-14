@@ -164,4 +164,5 @@ pip-log.txt
 
 gen/
 assets/
+webapp_compiled.js
 

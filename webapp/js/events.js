@@ -69,7 +69,8 @@ function initMap() {
 		zoom: 8,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.HYBRID,
-		minZoom: 16
+		minZoom: 16,
+		tilt: 0
 	};
 	gmap = new google.maps.Map($("#map-canvas")[0], myOptions);
 }
@@ -132,7 +133,6 @@ function loadCampus() {
 			
 			gmap.panTo(new google.maps.LatLng(campus.location.lat / 1000000, campus.location.lng / 1000000));
 			gmap.setZoom(16);
-			gmap.setTilt(0);
 
 			initLocationList(campus);
 			setupAutocomplete();

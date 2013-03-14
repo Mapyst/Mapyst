@@ -64,10 +64,10 @@ function createPrintMaps(route) {
 			zoom: 8,
 			center: latlng,
 			mapTypeId: google.maps.MapTypeId.HYBRID,
-			minZoom: 16
+			minZoom: 16,
+			tilt: 0
 		};
 		var map = new google.maps.Map(map_divs[i], myOptions);
-		map.setTilt(0);
 
 		//copies the current map for viewing directions into each of the print tiles
 		copyMap(map, i - 1);
