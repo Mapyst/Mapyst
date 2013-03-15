@@ -32,7 +32,8 @@ public class Campus {
 
 	public Building[] buildings;
 	public Location_Type[] location_types;
-	
+
+    // TODO: This is never initialized
 	public static FileHandlerInterface fileHandler;
 
 	public Floor getFloor(int buildingIndex, int floorIndex) {
@@ -40,25 +41,21 @@ public class Campus {
 	}
 
 	public String getFloorFile (int buildingIndex, int floorIndex, String fileExtension) {
-		String fileName = buildingIndex + "-" + floorIndex + "." + fileExtension; 
-		return fileName;
+        return buildingIndex + "-" + floorIndex + "." + fileExtension;
 	}
 
 	public String getFloorFile (Building building, int floorIndex, String fileExtension) {
 		int buildingIndex = findBuilding(building);
-		String fileName = buildingIndex + "-" + floorIndex + "." + fileExtension; 
-		return fileName;
+        return buildingIndex + "-" + floorIndex + "." + fileExtension;
 	}
 
 	public String getBuildingFile (int buildingIndex, String fileExtension) {
-		String fileName = buildingIndex + "." + fileExtension;
-		return fileName;
+        return buildingIndex + "." + fileExtension;
 	}
 
 	public String getBuildingFile (Building building, String fileExtension) {
 		int buildingIndex = findBuilding(building);
-		String fileName = buildingIndex + "." + fileExtension;
-		return fileName;
+        return buildingIndex + "." + fileExtension;
 	}
 
 	private int findBuilding(Building building) {
@@ -86,15 +83,12 @@ public class Campus {
 				outsideBuildings.add(buildings[i]);
 			}
 		}
-		return outsideBuildings.toArray(new Building[0]);
+		return outsideBuildings.toArray(new Building[outsideBuildings.size()]);
 	}
 
 	public boolean buildingIsOutside(int building) {
-		if (buildings[building].type == Building.OUTSIDE) {
-			return true;
-		}
-		return false;
-	}
+        return buildings[building].type == Building.OUTSIDE;
+    }
 
 	public int findLocationType(String type) {
 		for (int i = 0; i < location_types.length; i++) {
@@ -106,32 +100,29 @@ public class Campus {
 
 	public Location[] getDirectionEndLocations() {
 		ArrayList<Location> locations = new ArrayList<Location>();
-		for (int i = 0; i < location_types.length; i++) {
-			for (int j = 0; j < location_types[i].locations.length; j++) {
-				Location location = location_types[i].locations[j]; 
-				if (location.is_direction_end) {
-					locations.add(location);
-				}
-			}
-		}
+        for (Location_Type type : location_types) {
+            for (int j = 0; j < type.locations.length; j++) {
+                Location location = type.locations[j];
+                if (location.is_direction_end) {
+                    locations.add(location);
+                }
+            }
+        }
 
-		return locations.toArray(new Location[0]);
+		return locations.toArray(new Location[locations.size()]);
 	}
 
 	public Location getCampusLocation(String text) {
-		for (int i = 0; i < location_types.length; i++) {
-			for (int j = 0; j < location_types[i].locations.length; j++) {
-				for (int k = 0; k < location_types[i].locations[j].names.length; k++) {
-					if (text.equals(location_types[i].locations[j].names[k]))
-						return location_types[i].locations[j];
-				}
-			}
-		}
+        for (Location_Type type : location_types) {
+            for (int j = 0; j < type.locations.length; j++) {
+                for (int k = 0; k < type.locations[j].names.length; k++) {
+                    if (text.equals(type.locations[j].names[k]))
+                        return type.locations[j];
+                }
+            }
+        }
 		return null;
 	}
-
-
-
 
 	public static Campus load(int campusId) {
 		fileHandler.setCampusId(campusId);
@@ -140,8 +131,7 @@ public class Campus {
 		String json = "";
 
 		json = fileHandler.readCampusFile();
-		Campus campus = gson.fromJson(json, Campus.class);
 
-		return campus;
+        return gson.fromJson(json, Campus.class);
 	}
 }

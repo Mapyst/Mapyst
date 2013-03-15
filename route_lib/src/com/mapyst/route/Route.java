@@ -46,11 +46,11 @@ public class Route {
 		this.endText = endText;
 		
 		//checks to make sure that all the points are non-null
-		for (int i = 0; i < points.length; i++) {
-			//System.out.println("orig point: " + points[i]);
-			if (points[i] == null)
-				return; 
-		}
+        for (Waypoint2D point : points) {
+            //System.out.println("orig point: " + points[i]);
+            if (point == null)
+                return;
+        }
 		
 		directions = calcDirs(endText, campus);
 	}
@@ -118,21 +118,20 @@ public class Route {
 			}
 			//add direction for landmarks
 			else {
-				for (int j = 0; j < directionEndLocations.length; j++) {
-					Location location = directionEndLocations[j];
-					if (location.waypoints.length > 0) {
-						for (int k = 0; k < location.waypoints.length; k++) {
-							WaypointID waypointID = location.waypoints[k];
-							if (waypointID.equals(points[i].getId()) && !text.equals("Go to " + location.names[0])) {
-								text = "Go to " + location.names[0];
-								directions.add(new Direction(text, dirStart, points[i], this, Direction.SAME_FLOOR));
-								dirStart = points[i];
-								//dirIndex++;
-								break;
-							}
-						}
-					}
-				}
+                for (Location location : directionEndLocations) {
+                    if (location.waypoints.length > 0) {
+                        for (int k = 0; k < location.waypoints.length; k++) {
+                            WaypointID waypointID = location.waypoints[k];
+                            if (waypointID.equals(points[i].getId()) && !text.equals("Go to " + location.names[0])) {
+                                text = "Go to " + location.names[0];
+                                directions.add(new Direction(text, dirStart, points[i], this, Direction.SAME_FLOOR));
+                                dirStart = points[i];
+                                //dirIndex++;
+                                break;
+                            }
+                        }
+                    }
+                }
 			}
 		}
 		
@@ -143,7 +142,7 @@ public class Route {
 		}
 		directions.add(new Direction("Destination: " + endText, dirStart, points[points.length-1], this, Direction.SAME_FLOOR));
 		
-		return directions.toArray(new Direction[0]);
+		return directions.toArray(new Direction[directions.size()]);
 	}
 
 	private Waypoint2D insertSpecialDir(int i, Waypoint2D dirStart, ArrayList<Direction> directions, Campus campus) {
@@ -183,7 +182,7 @@ public class Route {
 		for (int i = startIndex; i <= endIndex; i++){
 			geoPoints.add(points[i].getPoint());
 		}
-		return geoPoints.toArray(new LatLngPoint[0]);
+		return geoPoints.toArray(new LatLngPoint[geoPoints.size()]);
 	}
 	
 	//calculates the total time between two points: start,end
@@ -227,9 +226,9 @@ public class Route {
 		if (directions == null)
 			return 0;
 		int time = 0;
-		for (int i = 0; i < directions.length; i++) {
-			time += directions[i].getTime();
-		}
+        for (Direction direction : directions) {
+            time += direction.getTime();
+        }
 		return time;
 	}
 	

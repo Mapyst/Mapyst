@@ -18,16 +18,17 @@ package com.mapyst.route;
 
 /*
  Class: Codes
- The location codes for a point. Includes building code, floor code, and index.  Also includes constants for buildings and non-numerical floors.
+ The location codes for a point. Includes building code, floor code, and index.
+ Also includes constants for buildings and non-numerical floors.
 
  Author:
  Brandon Kase
  */
 public class WaypointID {
 
-	private int buildingIndex;
-	private int floorIndex;
-	private int pointIndex;
+	public final int buildingIndex;
+	public final int floorIndex;
+	public final int pointIndex;
 
 	/*
 	 * Constructor: Codes
@@ -46,7 +47,7 @@ public class WaypointID {
 		this.floorIndex = -1;
 		this.pointIndex = -1;
 	}
-	
+
 	/*
 	 * Function: parseWaypoint
 	 *
@@ -74,6 +75,8 @@ public class WaypointID {
 	 * Returns: true if the two codes are equal, false otherwise
 	 */
 	public boolean equals(Object obj) {
+        if (!(obj instanceof WaypointID))
+            return false;
 		WaypointID other = (WaypointID) obj;
 		return this.buildingIndex == other.buildingIndex
 				&& this.floorIndex == other.floorIndex
@@ -92,11 +95,11 @@ public class WaypointID {
 				(char) (pointIndex) }; // it will always be composed of bytes
 		int hash = 0;
 
-		for (int i = 0; i < idBytes.length; i++) {
-			hash += idBytes[i];
-			hash += (hash << 10);
-			hash ^= (hash >> 6);
-		}
+        for (char idByte : idBytes) {
+            hash += idByte;
+            hash += (hash << 10);
+            hash ^= (hash >> 6);
+        }
 		hash += (hash << 3);
 		hash ^= (hash >> 11);
 		hash += (hash << 15);
@@ -104,38 +107,18 @@ public class WaypointID {
 		return hash; // take the id and multiply it by a large prime
 	}
 
-	/*
-	 * Function: getIndex
-	 * 
-	 * Returns: The index
-	 */
 	public int getPointIndex() {
 		return this.pointIndex;
 	}
 
-	/*
-	 * Function: getFloor
-	 * 
-	 * Returns: The floor code
-	 */
 	public int getFloorIndex() {
 		return this.floorIndex;
 	}
 
-	/*
-	 * Function: getBuilding
-	 * 
-	 * Returns: The building code
-	 */
 	public int getBuildingIndex() {
 		return this.buildingIndex;
 	}
 
-	/*
-	 * Function: toString
-	 * 
-	 * Returns: A string representation of the Codes
-	 */
 	public String toString() {
 		return "" + buildingIndex + "," + floorIndex + "," + pointIndex + "";
 	}

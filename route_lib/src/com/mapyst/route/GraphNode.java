@@ -20,7 +20,10 @@ import java.util.ArrayList;
 
 /*
  Class: GraphNode
- A node in a graph of nodes.  Includes public fields for data (the data stored in the graph node) and arclist (the list of arcs that originate from this graph node)
+ A node in a graph of nodes.
+ Includes public fields for data (the data stored in the graph node) and
+ arclist
+ (the list of arcs that originate from this graph node)
 
  Author:
  Brandon Kase
@@ -39,7 +42,7 @@ public class GraphNode<E> {
 	 */
 	public GraphNode(E data) {
 		this.data = data;
-		arcList = new ArrayList<Arc<E>>();
+		this.arcList = new ArrayList<Arc<E>>();
 	}
 
 	/*
@@ -52,13 +55,12 @@ public class GraphNode<E> {
 	public void addArc(GraphNode<E> node, int distance, int terrain) {
 		arcList.add(new Arc<E>(node, distance, terrain));
 	}
-	
-	//This is an O(n) remove, to make it O(1) use a HashMap of Arcs
+
 	//Returns true if successfully removed
 	public boolean removeArc(Arc<E> arc) {
 		return arcList.remove(arc);
 	}
-	
+
 	public boolean removeArc(GraphNode<E> node) {
 		for (int i = 0; i < arcList.size(); i++) {
 			if (arcList.get(i).getConnectedNode().equals(node)) {
@@ -69,48 +71,27 @@ public class GraphNode<E> {
 		return false;
 	}
 	
-	//Removes all arcs connected to a node
 	public void removeAllArcs() {
 		arcList = new ArrayList<Arc<E>>();
 	}
 
-	/*
-	 * Function: hashCode
-	 * 
-	 * Returns: the hash code of the data
-	 */
 	public int hashCode() {
 		return data.hashCode();
 	}
 	
-	/*
-	 * Function: equals
-	 * 
-	 * Parameters: obj - The object that is being tested against this
-	 * 
-	 * Returns: true if obj equals this, false otherwise
-	 */
-	@SuppressWarnings("rawtypes")
 	public boolean equals(Object obj) {
-		if (!(obj instanceof GraphNode))
-			return false;
-		return (((GraphNode)obj).data.equals(this.data));
-	}
+        return obj instanceof GraphNode && (((GraphNode) obj).data.equals(this.data));
+    }
 
-	/*
-	 * Function: toString
-	 * 
-	 * Returns: a string representation of the graph node and all of its arcs
-	 */
 	public String toString() {
-		String s = "";
+		StringBuilder sb = new StringBuilder();
 		for (Arc<E> arc : arcList) {
-			s += this.data.toString();
-			s += "-(" + arc.getDistance() + ")->" + arc.getConnectedNode().data;
-			s += "\n";
+			sb.append(this.data.toString())
+                    .append("-(").append(arc.getDistance()).append(")->")
+                    .append(arc.getConnectedNode().data)
+                    .append("\n");
 		}
-		return s;
-		// return this.data.toString();
+		return sb.toString();
 	}
-
 }
+

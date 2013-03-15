@@ -158,7 +158,7 @@ public class DataParser {
 	}
 
 	private static String readString(BufferedInputStream in) throws IOException {
-		StringBuffer buf = new StringBuffer();
+		StringBuilder buf = new StringBuilder();
 		char c = (char)in.read();
 
 		while (c != '\0') {

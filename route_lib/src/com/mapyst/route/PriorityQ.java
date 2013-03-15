@@ -19,8 +19,6 @@ package com.mapyst.route;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 /*
  Class: PQueue
  A priority queue implementation that dequeues the element with the least priority.
@@ -33,7 +31,6 @@ import java.util.Map;
 
  Parameters:
  <E extends Prioritizable> - The type of element to be stored in the priority queue
-
  */
 public class PriorityQ<E extends Prioritizable> {
 	// FEILDS
@@ -64,11 +61,6 @@ public class PriorityQ<E extends Prioritizable> {
 		elementToIndex = new HashMap<E, Integer>();
 	}
 
-	/*
-	 * Function: enqueue Enqueues an element to the priority queue
-	 * 
-	 * Parameters: data - The element to be enqueued
-	 */
 	public void enqueue(E data) {
 		heap[lastIndex] = data;
 		elementToIndex.put(data, lastIndex); //update map
@@ -78,14 +70,12 @@ public class PriorityQ<E extends Prioritizable> {
 		heapifyUp();
 	}
 
-	
-
 	/*
 	 * Function: peek Looks at the the next element to be dequeued without
 	 * dequeuing it
-	 * 
+	 *
 	 * Returns: The element next in line to be dequeued
-	 * 
+	 *
 	 * Throws: NullPointerException - if the priority queue is empty.
 	 */
 	public E peek() {
@@ -197,31 +187,13 @@ public class PriorityQ<E extends Prioritizable> {
 		}
 		return s;
 	}
-	
-	/*public void printHeap() {
-		for (int i = 0; i < heap.length; i++) {
-			if (heap[i] != null &&
-					//((Waypoint2D)heap[i]).getId().getFloorIndex() == 6 &&
-				//	((Waypoint2D)heap[i]).getId().getBuildingIndex() == 16)
-				//Log.d("Heap", "" + heap[i]);
-		}
-	}*/
-	
+
 	public int find(E val) {
 		Integer index = elementToIndex.get(val);
 		if (index == null)
 			return -1;
 		else
 			return index;
-		
-		/*for (int i = 1; i < lastIndex; i++) {
-			if (val.equals(heap[i])) {
-				return i;
-			}
-		}
-		return -1;*/
-		//printHeap();
-		//throw new IllegalArgumentException("val " + val + " does not appear in queue");
 	}
 	
 	public E[] getHeap() {
@@ -231,9 +203,7 @@ public class PriorityQ<E extends Prioritizable> {
 	@SuppressWarnings("unchecked")
 	private E[] expand() {
 		E[] toReturn = (E[]) new Prioritizable[heap.length * 2];
-		for (int i = 0; i < heap.length; i++) {
-			toReturn[i] = heap[i];
-		}
+        System.arraycopy(heap, 0, toReturn, 0, heap.length);
 		return toReturn;
 	}
 

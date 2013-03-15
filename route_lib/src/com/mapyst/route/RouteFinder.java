@@ -86,20 +86,18 @@ public class RouteFinder {
 		
 		//formats the shortest path into a list of graph nodes
 		ArrayList<GraphNode<Waypoint2D>> dijkstrasNodes = new ArrayList<GraphNode<Waypoint2D>>();
-		for (int i = 0; i < dijkstras.size(); i++) { //for each point in the path
-			GraphNode<Waypoint2D> tempNode = loadedNodes.get(dijkstras.get(i));
-			dijkstrasNodes.add(tempNode);
-//			System.out.println(tempNode.data.getId());
-		}
+        for (WaypointID id : dijkstras) { //for each point in the path
+            GraphNode<Waypoint2D> tempNode = loadedNodes.get(id);
+            dijkstrasNodes.add(tempNode);
+        }
 		
 		//initializes arrays that will be sent to the route object
 		Waypoint2D[] points = new Waypoint2D[dijkstras.size()];
-		int [] terrains = new int[dijkstras.size()-1];
-		int [] times = new int[dijkstras.size()-1];
+		int[] terrains = new int[dijkstras.size()-1];
+		int[] times = new int[dijkstras.size()-1];
 
 		//fills those arrays with the lists of points, terrains, and times for calculation of the route
-		GraphNode<Waypoint2D> startNode = loadedNodes.get(startResult.getPointID());
-		GraphNode<Waypoint2D> currentNode = startNode;
+        GraphNode<Waypoint2D> currentNode = loadedNodes.get(startResult.getPointID());
 		for (int i = 0; i < dijkstrasNodes.size()-1; i++) {
 			currentNode = dijkstrasNodes.get(i);
 			for (Arc<Waypoint2D> arc: currentNode.arcList) {
@@ -284,19 +282,19 @@ public class RouteFinder {
 	
 	private void queueOutsideBuildings(HashSet<String> floorGraphFiles, HashSet<String> buildingGraphFiles) {
 		Building[] outsideBuildings = campus.getOutsideBuildings();
-		for (int i = 0; i < outsideBuildings.length; i++) {
-			for (int j = 0; j < outsideBuildings[i].floors.length; j++) {
-				floorGraphFiles.add(campus.getFloorFile(outsideBuildings[i], j, "ncmg"));
-			}
-			buildingGraphFiles.add(campus.getBuildingFile(outsideBuildings[i], "ncmg"));
-		}
+        for (Building outsideBuilding : outsideBuildings) {
+            for (int j = 0; j < outsideBuilding.floors.length; j++) {
+                floorGraphFiles.add(campus.getFloorFile(outsideBuilding, j, "ncmg"));
+            }
+            buildingGraphFiles.add(campus.getBuildingFile(outsideBuilding, "ncmg"));
+        }
 	}
 	
 	//a connection floor is one that is necessary to allow the shortest path algorithm to search all possible routes
 	//this is defined by a floor's load_if_close variable
 	private void queueBuilding(int building, HashSet<String> floorGraphFiles, HashSet<String> buildingGraphFiles, boolean onlyLoadConnectionFloors) {
 		for (int floor = 0; floor < campus.buildings[building].floors.length; floor++) {
-			if (!onlyLoadConnectionFloors || (onlyLoadConnectionFloors && campus.getFloor(building, floor).load_if_close))
+			if (!onlyLoadConnectionFloors || (campus.getFloor(building, floor).load_if_close))
 				floorGraphFiles.add(campus.getFloorFile(building, floor, "ncmg"));
 		}
 		buildingGraphFiles.add(campus.getBuildingFile(building, "ncmg"));
@@ -322,9 +320,9 @@ public class RouteFinder {
 	
 	public static void loadOutsideBuildings(Campus campus, HashMap<WaypointID, GraphNode<Waypoint2D>> nodes) {
 		Building[] outsideBuildings = campus.getOutsideBuildings();
-		for (int i = 0; i < outsideBuildings.length; i++) {
-			loadBuilding(outsideBuildings[i], campus, nodes);
-		}
+        for (Building outsideBuilding : outsideBuildings) {
+            loadBuilding(outsideBuilding, campus, nodes);
+        }
 	}
 	
 	public static void loadBuilding(Building building, Campus campus, HashMap<WaypointID, GraphNode<Waypoint2D>> nodes) {

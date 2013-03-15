@@ -73,14 +73,11 @@ public class ShortestPath {
 			throw new RuntimeException("Source Node does not exist");
 		// we need this outside to for-loop in the returning
 		Waypoint2D currPoint;
-		//distancesQ.printHeap();
 		while (!distancesQ.isEmpty()) {
 			currPoint = distancesQ.dequeue();
-			//DEBUG
-			//if (currPoint.getId().getBuildingIndex() == 16)
-			//	Log.d("PriorQueue", currPoint.toString());
 			// if the lowest is infinity, then those can't be reached
-			if (currPoint.getDistance() == Integer.MAX_VALUE || destinationNodeWaypointIDs.contains(currPoint.getId())) {
+			if (currPoint.getDistance() == Integer.MAX_VALUE ||
+                    destinationNodeWaypointIDs.contains(currPoint.getId())) {
 				break;
 			}
 			// get currGNode as a graph node
@@ -94,8 +91,6 @@ public class ShortestPath {
 				// get the next index of the node connected to the current arc
 				WaypointID nextId = ((Waypoint2D) curr.getConnectedNode().data).getId();
 				
-				//THIS IS INEFFICIENT THIS FIND CALL TAKES O(N)
-				//if (distancesQ.find(curr.getConnectedNode().data) == -1);
 				// if this is smaller replace it
 				if (sum < allNodes.get(nextId).data.getDistance()) {
 					allNodes.get(nextId).data.setPriority(sum);
@@ -111,14 +106,17 @@ public class ShortestPath {
 	}
 	
 	/*
-	 * FunctionL previousToPath Converts the hash map of previous IDs to an
+	 * Function: previousToPath Converts the hash map of previous IDs to an
 	 * arraylist of the path in correct order
 	 * 
 	 * Parameters: pathIndices -The hash map of previous IDs end - The ending ID
 	 * 
 	 * Returns: An arraylist of the path in correct order
 	 */
-	public static ArrayList<WaypointID> previousToPath(HashMap<WaypointID, WaypointID> pathIndices, HashSet<WaypointID> ends) {
+	public static ArrayList<WaypointID> previousToPath(
+            HashMap<WaypointID, WaypointID> pathIndices,
+            HashSet<WaypointID> ends
+    ) {
 		WaypointID curr = null;
 		ArrayList<WaypointID> toReturn = new ArrayList<WaypointID>();
 		for (Entry<WaypointID, WaypointID> e: pathIndices.entrySet()) {
@@ -145,9 +143,9 @@ public class ShortestPath {
 	
 	private static ArrayList<WaypointID> reverse(ArrayList<WaypointID> list) {
 		ArrayList<WaypointID> toReturn = new ArrayList<WaypointID>();
-		for (int i = 0; i < list.size(); i++) {
-			toReturn.add(0, list.get(i));
-		}
+        for (WaypointID id : list) {
+            toReturn.add(0, id);
+        }
 		return toReturn;
 	}
 

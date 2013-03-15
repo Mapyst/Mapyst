@@ -19,7 +19,9 @@ package com.mapyst.route;
 
 /*
  Class: MyPoint2D
- A point in 2D space on campus with an (x, y); a code for it's building, floor, and index; a label; and the distance from the starting point (for Dijkstra's algorithm). 
+ A point in 2D space on campus with an (x, y);
+ a code for it's building, floor, and index; a label;
+ and the distance from the starting point (for Dijkstra's algorithm).
 
  Author:
  Brandon Kase
@@ -46,7 +48,7 @@ public class Waypoint2D implements Prioritizable {
 		this.label = label;
 		this.distance = 0;
 	}
-	
+
 	public Waypoint2D() {
 		this.point = new LatLngPoint();
 		this.id = new WaypointID();
@@ -112,15 +114,9 @@ public class Waypoint2D implements Prioritizable {
 		return this.id.hashCode();
 	}
 
-	/*
-	 * Function: toString
-	 * 
-	 * Returna: A string representation of the point
-	 */
 	public String toString() {
 		return "" + "lat: " + this.point.lat + ",   lng: " + this.point.lng + ", id: " + this.id
 				+ ", Label: " + this.label;
-		// return this.id.toString();
 	}
 
 	/*
