@@ -32,8 +32,7 @@ import com.mapyst.route.Waypoint2D;
 public class LocationChooserOverlay extends ViewItemOverlay {
 
 	private Mapyst app;
-	private Interpreter interpreter;
-	private MapView mapView;
+    private MapView mapView;
 
 	private MainScreen mainScreen;
 
@@ -82,17 +81,16 @@ public class LocationChooserOverlay extends ViewItemOverlay {
 			clearViews();
 			return;
 		}
-		interpreter = new Interpreter(app.campus);
+        Interpreter interpreter = new Interpreter(app.campus);
 		GeoPoint touchPoint = mapView.getProjection().fromPixels((int) x, (int) y);
 		InterpretedInfo ii = interpreter.interpretLatLng(touchPoint.getLatitudeE6(), touchPoint.getLongitudeE6()); // loc
 
 		Waypoint2D waypt2D = app.getRouteFinder().getWaypoint2D(ii.getResult().getPointID());
 
 		String locName = "lat:" + (waypt2D.getPoint().lat * 1. / 1E6) + " lng:"	+ (waypt2D.getPoint().lng * 1. / 1E6);
-		GeoPoint point = touchPoint;
 
-		this.addView(new LocationBalloon(app.getApplicationContext(), locName,
-				new OnLocationButtonClickListener(locName)), point,
+        this.addView(new LocationBalloon(app.getApplicationContext(), locName,
+				new OnLocationButtonClickListener(locName)), touchPoint,
 				MapView.LayoutParams.CENTER | MapView.LayoutParams.BOTTOM);
 	}
 

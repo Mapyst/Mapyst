@@ -24,11 +24,6 @@ public class CampusLoaderTask extends
 		AsyncTask<CampusLoaderTaskPrefs, Integer, CampusLoaderTaskPrefs> {
 
 	@Override
-	protected void onPreExecute() { // This runs on the UI thread
-		return;
-	}
-
-	@Override
 	protected CampusLoaderTaskPrefs doInBackground(CampusLoaderTaskPrefs... prefs) { // This runs in the background
 		for (CampusLoaderTaskPrefs pref : prefs) {
 			pref.app.campus = Campus.load(pref.campus_id);
@@ -38,14 +33,7 @@ public class CampusLoaderTask extends
 	}
 
 	@Override
-	protected void onProgressUpdate(Integer... progress) { // Called from background thread to UI thread
-		return;
-	}
-
-	@Override
 	protected void onPostExecute(CampusLoaderTaskPrefs result) { // Called UI thread
 		result.loaderContext.finishedLoading();
-		return;
 	}
-
 }

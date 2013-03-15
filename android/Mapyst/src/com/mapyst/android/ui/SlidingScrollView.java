@@ -34,9 +34,7 @@ public class SlidingScrollView extends HorizontalScrollView implements
 
 	private int activeView = 1;
 
-	private int mainView = 1;
-
-	private LinearLayout linearLayout;
+    private LinearLayout linearLayout;
 
 	private boolean isRefreshing = false;
 
@@ -159,7 +157,8 @@ public class SlidingScrollView extends HorizontalScrollView implements
 	}
 
 	public void ensureLargeEnough(View child) {
-		if (linearLayout.indexOfChild(child) == mainView
+        int mainView = 1;
+        if (linearLayout.indexOfChild(child) == mainView
 				&& !(child.getLayoutParams() != null && child.getLayoutParams().width == this.getWidth())) {
 			LinearLayout.LayoutParams layout = (LinearLayout.LayoutParams) child.getLayoutParams();
 			if (layout == null)

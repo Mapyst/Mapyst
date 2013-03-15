@@ -41,8 +41,6 @@ public class LocationFinder {
 	public void setupLocService() {
 		mlocManager = (LocationManager) app
 				.getSystemService(Context.LOCATION_SERVICE);
-		// currentNetworkLoc =
-		// mlocManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 		mlocListenerNetwork = new LocationListener() {
 			@Override
 			public void onLocationChanged(Location loc) {
@@ -110,8 +108,7 @@ public class LocationFinder {
 			loc = currentNetworkLoc;
 
 		Interpreter interpreter = new Interpreter(app.campus);
-		InterpretedInfo info = interpreter.interpretLatLng((int) (loc.getLatitude() * 1E6),	(int) (loc.getLongitude() * 1E6));
 
-		return info;
+        return interpreter.interpretLatLng((int) (loc.getLatitude() * 1E6),	(int) (loc.getLongitude() * 1E6));
 	}
 }

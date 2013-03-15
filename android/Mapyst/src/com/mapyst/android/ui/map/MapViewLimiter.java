@@ -27,7 +27,6 @@ public class MapViewLimiter {
 		Rect currBounds = MapUtils.getCurrBounds(map);
 		Rect newTargetBounds = getNewTargetBounds(targetBounds, 4);
 		return currBounds.width() > newTargetBounds.width() * .75;
-
 	}
 
 	public static Rect getNewTargetBounds(Rect targetBounds, float scale) {

@@ -71,9 +71,9 @@ public class DirectionsList extends Activity {
 		Direction[] directions = app.route.getDirections();
 		ArrayList<DirectionsListItem> listItems = new ArrayList<DirectionsListItem>();
 		listItems.add(new DirectionsListItem("From:  " + app.route.startText + "\nTo:       " + app.route.endText, formatTime(app.route.getTime() / 1000), true));
-		for (int i = 0; i < directions.length; i++) {
-			listItems.add(new DirectionsListItem(directions[i].getText(), formatTime(directions[i].getTime() / 1000), false));
-		}
+        for (Direction direction : directions) {
+            listItems.add(new DirectionsListItem(direction.getText(), formatTime(direction.getTime() / 1000), false));
+        }
 
 		ListView directionsList = (ListView) findViewById(R.id.directionsList);
 		DirectionsListAdapter dadapter = new DirectionsListAdapter(this, R.layout.directions_list_item, listItems);
@@ -121,8 +121,7 @@ public class DirectionsList extends Activity {
 	}
 
 	private Intent createSettingsIntent() {
-		Intent i = new Intent(this, Settings.class);
-		return i;
+        return new Intent(this, Settings.class);
 	}
 
 	@SuppressWarnings("unused")
@@ -130,6 +129,5 @@ public class DirectionsList extends Activity {
 		Intent i = new Intent(context, MainScreen.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		return i;
-
 	}
 }

@@ -54,10 +54,14 @@ public class DirectionsListAdapter extends ArrayAdapter<DirectionsListItem> {
 			if (dirText != null && !item.isTotalTime) {
 				dirText.setText(Html.fromHtml("<i>" + item.directionTime + "s</i>"));
 			} else {
-				dirText.setText(Html.fromHtml("<i>Total: " + item.directionTime	+ "s</i>"));
-				convertView.setBackgroundColor(Color.LTGRAY);
-				dirName.setTextColor(Color.DKGRAY);
-				dirText.setTextColor(Color.DKGRAY);
+                convertView.setBackgroundColor(Color.LTGRAY);
+                if (dirText != null) {
+                    dirText.setText(Html.fromHtml("<i>Total: " + item.directionTime	+ "s</i>"));
+                    dirText.setTextColor(Color.DKGRAY);
+                }
+                if (dirName != null) {
+                    dirName.setTextColor(Color.DKGRAY);
+                }
 			}
 		}
 		return convertView;

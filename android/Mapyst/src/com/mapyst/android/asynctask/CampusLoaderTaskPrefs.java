@@ -27,7 +27,6 @@ public class CampusLoaderTaskPrefs {
 	public final CampusLoader loaderContext;
 
 	public CampusLoaderTaskPrefs(int campus_id, Mapyst app, MainScreen main, CampusLoader loaderContext) {
-
 		this.campus_id = campus_id;
 		this.app = app;
 		this.main = main;

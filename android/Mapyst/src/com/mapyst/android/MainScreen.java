@@ -198,8 +198,7 @@ public class MainScreen extends MapActivity {
 	}
 
 	private Intent createSettingsIntent() {
-		Intent i = new Intent(this, Settings.class);
-		return i;
+        return new Intent(this, Settings.class);
 	}
 
 	private void setupUI() {
@@ -540,8 +539,8 @@ public class MainScreen extends MapActivity {
 						if (directions != null) {
 							setUI(curDir + 1, true);
 						}
+                        v.invalidate();
 					}
-					v.invalidate();
 				}
 
 			});
@@ -554,8 +553,8 @@ public class MainScreen extends MapActivity {
 						if (directions != null) {
 							setUI(curDir - 1, true);
 						}
+                        v.invalidate();
 					}
-					v.invalidate();
 				}
 			});
 		}
@@ -721,9 +720,9 @@ public class MainScreen extends MapActivity {
 	}
 
 	public void getDirections(String start, String end) {
-		if (start.equals("") && end.equals(""))
-			return;
-		else if (start.equals("")) {
+		if (start.equals("") && end.equals("")) {
+           // do nothing
+        } else if (start.equals("")) {
 			onePoint(end);
 		} else if (end.equals("")) {
 			onePoint(start);
@@ -752,8 +751,7 @@ public class MainScreen extends MapActivity {
 			// checks to make sure the start and end are not the same
 			else if (startInfo.getResult().getPointID().equals(endInfo.getResult().getPointID())) {
 				CenteredToastFactory.makeToastAndShow(this, "Please enter two different locations.", Toast.LENGTH_SHORT);
-				return;
-			} else {
+            } else {
 				RoutePreferences prefs = getRoutePrefs();
 				RouteMakerTaskPrefs routePrefs = new RouteMakerTaskPrefs(startInfo.getResult(), endInfo.getResult(), prefs, app, this);
 				getDirectionsButton.setEnabled(false);
@@ -766,11 +764,6 @@ public class MainScreen extends MapActivity {
 			AsyncTask<RouteMakerTaskPrefs, Integer, RouteMakerTaskPrefs> {
 
 		@Override
-		protected void onPreExecute() { // This runs on the UI thread
-			return;
-		}
-
-		@Override
 		protected RouteMakerTaskPrefs doInBackground(
 				RouteMakerTaskPrefs... prefs) { // This runs in the background
 			for (RouteMakerTaskPrefs pref : prefs) {
@@ -781,17 +774,8 @@ public class MainScreen extends MapActivity {
 		}
 
 		@Override
-		protected void onProgressUpdate(Integer... progress) { // Called from
-																// background
-																// thread to UI
-																// thread
-		}
-
-		@Override
-		protected void onPostExecute(RouteMakerTaskPrefs result) { // Called UI
-																	// thread
+		protected void onPostExecute(RouteMakerTaskPrefs result) {
 			result.loaderContext.displayRoute();
-			return;
 		}
 
 	}
@@ -805,7 +789,8 @@ public class MainScreen extends MapActivity {
 			app.route = new Route(info.getResult(), app.getRouteFinder());
 			displayRoute();
 		} else {
-			CenteredToastFactory.makeToastAndShow(this, "Sorry, there was a problem interpreting your input.", Toast.LENGTH_SHORT);
+			CenteredToastFactory
+                    .makeToastAndShow(this, "Sorry, there was a problem interpreting your input.", Toast.LENGTH_SHORT);
 		}
 	}
 
@@ -822,7 +807,11 @@ public class MainScreen extends MapActivity {
 		return info;
 	}
 
-	private void showSuggestionsList(InterpretedInfo info, final String originalInput, final boolean relaunchGetDirections) {
+	private void showSuggestionsList(
+            InterpretedInfo info,
+            final String originalInput,
+            final boolean relaunchGetDirections
+    ) {
 		ArrayList<InterpretResult> suggestions = info.getSuggestions();
 		if (suggestions.size() > 1) {
 			final String[] labels = new String[suggestions.size()];

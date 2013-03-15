@@ -37,8 +37,7 @@ public class LocationBalloon extends LinearLayout {
 
 	private Paint rectPaint;
 	private Paint arrowPaint;
-	private Paint arrowOutlinePaint;
-	private Paint rectOutlinePaint;
+    private Paint rectOutlinePaint;
 
 	private LocationButtonClickListener onButtonClickListener;
 
@@ -76,7 +75,7 @@ public class LocationBalloon extends LinearLayout {
 		rectOutlinePaint.setStyle(Style.STROKE);
 		rectOutlinePaint.setStrokeWidth(10);
 
-		arrowOutlinePaint = new Paint();
+        Paint arrowOutlinePaint = new Paint();
 		arrowOutlinePaint.setColor(Color.BLACK);
 		arrowOutlinePaint.setStyle(Paint.Style.STROKE);
 		arrowOutlinePaint.setStrokeWidth(3);

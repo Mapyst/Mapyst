@@ -34,16 +34,16 @@ public class MapViewMover {
 		float minY = Float.MAX_VALUE;
 		float minX = Float.MAX_VALUE;
 		LatLngPoint[] points = direction.getPoints();
-		for (int i = 0; i < points.length; i++) {
-			if (points[i].lng > maxX)
-				maxX = points[i].lng;
-			if (points[i].lng < minX)
-				minX = points[i].lng;
-			if (points[i].lat > maxY)
-				maxY = points[i].lat;
-			if (points[i].lat < minY)
-				minY = points[i].lat;
-		}
+        for (LatLngPoint point : points) {
+            if (point.lng > maxX)
+                maxX = point.lng;
+            if (point.lng < minX)
+                minX = point.lng;
+            if (point.lat > maxY)
+                maxY = point.lat;
+            if (point.lat < minY)
+                minY = point.lat;
+        }
 		MapViewMover.smoothFitToRect(mapView, handler, (int) minX, (int) maxX, (int) minY, (int) maxY, border, null);
 	}
 

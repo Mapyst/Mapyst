@@ -46,8 +46,7 @@ public class AndroidFileHandler implements FileHandlerInterface {
 
 	@Override
 	public InputStream getInputStream(String path) throws IOException {
-		InputStream inputStream = app.getAssets().open(path);
-		return inputStream;
+        return app.getAssets().open(path);
 	}
 
 	@Override
@@ -69,6 +68,7 @@ public class AndroidFileHandler implements FileHandlerInterface {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+        // TODO: This causes a NullPointerException if the files don't exist on disk
 		BufferedReader br = new BufferedReader(inReader);
 
 		String text = "";

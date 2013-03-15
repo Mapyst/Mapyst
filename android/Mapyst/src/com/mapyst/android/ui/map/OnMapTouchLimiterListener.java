@@ -44,6 +44,18 @@ public class OnMapTouchLimiterListener implements OnTouchListener {
 	private int lastProbDirX = 0; // -1 left, 1 right
 	private int lastProbDirY = 0; // -1 up, 1 down
 
+    private Timer timer;
+
+    private GeoPoint campusCenter;
+
+	private long lastRepair = 0;
+	private long startRepair = 0;
+
+	private boolean endTouch = false;
+
+	private float lastX;
+	private float lastY;
+
 	private class Repairer extends TimerTask {
 		public void run() {
 			if (MapViewLimiter.outOfBounds(map, bounds)	|| (repairing && MapViewLimiter.outOfBounds(map, bounds, 3f))) {
@@ -92,28 +104,15 @@ public class OnMapTouchLimiterListener implements OnTouchListener {
 						e.printStackTrace();
 					}
 				}
-				timer.schedule(new Repairer(), timerShortDelay);
+                int timerShortDelay = 20;
+                timer.schedule(new Repairer(), timerShortDelay);
 			} else {
 				repairing = false;
-				timer.schedule(new Repairer(), timerLongDelay);
+                int timerLongDelay = 500;
+                timer.schedule(new Repairer(), timerLongDelay);
 			}
 		}
 	}
-
-
-	private Timer timer;
-	private int timerShortDelay = 20;
-	private int timerLongDelay = 500;
-
-	private GeoPoint campusCenter;
-
-	private long lastRepair = 0;
-	private long startRepair = 0;
-
-	private boolean endTouch = false;
-
-	private float lastX;
-	private float lastY;
 
 	public OnMapTouchLimiterListener(MapView map, Rect bounds) {
 		this.map = map;
@@ -154,5 +153,4 @@ public class OnMapTouchLimiterListener implements OnTouchListener {
 
 		return false;
 	}
-
 }

@@ -17,6 +17,7 @@
 package com.mapyst.android;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.mapyst.android.asynctask.CampusLoaderTask;
 import com.mapyst.android.asynctask.CampusLoaderTaskPrefs;
@@ -64,9 +65,7 @@ public class CampusLoader {
 		// adds all the campus locations to the list for auto complete
 		for (int i = 0; i < app.campus.location_types.length; i++) {
 			for (int j = 0; j < app.campus.location_types[i].locations.length; j++) {
-				for (int k = 0; k < app.campus.location_types[i].locations[j].names.length; k++) {
-					locations.add(app.campus.location_types[i].locations[j].names[k]);
-				}
+                Collections.addAll(locations, app.campus.location_types[i].locations[j].names);
 			}
 		}
 		locations.add("Current Location");

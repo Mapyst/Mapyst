@@ -104,8 +104,7 @@ public class Icon {
 		Icon newIcon = new Icon();
 		newIcon.bitmap = bitmap;
 		newIcon.dirIndex = dirIndex;
-		GeoPoint geoPoint = DrawingHelpers.convertPointToGeo(latlngPoint);
-		newIcon.geoPoint = geoPoint;
+        newIcon.geoPoint = DrawingHelpers.convertPointToGeo(latlngPoint);
 
 		icons.add(newIcon);
 	}

@@ -150,10 +150,10 @@ public class LocationsAdapter extends BaseAdapter {
 		String times = hours.substring(colon + 1, end);
 		String[] hourPeriods = times.split(",");
 
-		for (int i = 0; i < hourPeriods.length; i++) {
-			if (checkPeriod(hourPeriods[i], curHour))
-				return true;
-		}
+        for (String hourPeriod : hourPeriods) {
+            if (checkPeriod(hourPeriod, curHour))
+                return true;
+        }
 		return false;
 	}
 

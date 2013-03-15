@@ -88,16 +88,15 @@ public class LocationsListView extends ListView {
 
 	public ArrayList<String> getLocHours(ArrayList<String> locs) {
 		ArrayList<String> hours = new ArrayList<String>(locs.size());
-		for (int i = 0; i < locs.size(); i++) {
-			Location location = app.campus.getCampusLocation(locs.get(i));
-			hours.add(location.hours);
-		}
+        for (String loc : locs) {
+            Location location = app.campus.getCampusLocation(loc);
+            hours.add(location.hours);
+        }
 		return hours;
 	}
 
 	public String getLocInfo(Location location) {
-		String info = formatHours(location.hours) + "\n\n" + location.description + "\n";
-		return info;
+        return formatHours(location.hours) + "\n\n" + location.description + "\n";
 	}
 
 	public String formatHours(String hours) {

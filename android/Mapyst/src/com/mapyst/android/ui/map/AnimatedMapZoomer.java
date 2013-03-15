@@ -23,18 +23,18 @@ import com.google.android.maps.MapView;
 
 public class AnimatedMapZoomer implements Runnable {
 
-	private int targetLatSpan;
-	private int targetLongSpan;
+	private final int targetLatSpan;
+	private final int targetLongSpan;
 
-	private MapView mapView;
-	private MapController mapController;
+	private final MapView mapView;
+	private final MapController mapController;
 
-	private int startLatSpan;
-	private int startLongSpan;
+	private final int startLatSpan;
+	private final int startLongSpan;
 
-	private long time;
+	private final long time;
 
-	private Handler handler;
+	private final Handler handler;
 
 	public AnimatedMapZoomer(MapView mapView, Handler handler, int targetLatSpan, int targetLongSpan, long time) {
 		this.targetLatSpan = targetLatSpan;
@@ -76,7 +76,7 @@ public class AnimatedMapZoomer implements Runnable {
 						public void run() {
 							if (dirF == -1) {
 								mapController.zoomOut();
-							} else if (dirF == 1) {
+							} else {
 								mapController.zoomIn();
 							}
 						}

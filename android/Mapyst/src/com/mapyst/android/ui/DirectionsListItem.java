@@ -17,9 +17,9 @@
 package com.mapyst.android.ui;
 
 public class DirectionsListItem {
-	public String directionName;
-	public String directionTime;
-	public Boolean isTotalTime;
+	public final String directionName;
+	public final String directionTime;
+	public final Boolean isTotalTime;
 
 	public DirectionsListItem(String directionName, String directionTime, Boolean isTotalTime) {
 		this.directionName = directionName;

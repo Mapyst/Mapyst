@@ -33,10 +33,7 @@ public class CompassOverlay extends Overlay {
 
 	// this class manages the UI for the compass
 
-	private final int blue = Color.rgb(72, 196, 255); // tried to match the green of the rest of the ui...
-	private final int semiTransparentWhite = Color.argb(170, 255, 255, 255); // for compass contrast
-
-	private float imageRotDeg = 0; // current compass data. Updated when compass calls our custom listener
+    private float imageRotDeg = 0; // current compass data. Updated when compass calls our custom listener
 
 	private Path compassPath; // stores the compass path data. Fractional [-1,1] so must be scaled on use
 	private Paint compassPaint; // paint for compass
@@ -65,7 +62,8 @@ public class CompassOverlay extends Overlay {
 		compassPaint.setAntiAlias(true);
 		compassPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 		compassPaint.setPathEffect(new CornerPathEffect(5.0f));
-		compassPaint.setColor(blue);
+        int blue = Color.rgb(72, 196, 255);
+        compassPaint.setColor(blue);
 
 		circlePaintOuter = new Paint();
 		circlePaintOuter.setAntiAlias(true);
@@ -77,7 +75,8 @@ public class CompassOverlay extends Overlay {
 		circlePaintInner.setAntiAlias(true);
 		circlePaintInner.setStrokeWidth(1.0f);
 		circlePaintInner.setStyle(Style.FILL);
-		circlePaintInner.setColor(semiTransparentWhite);
+        int semiTransparentWhite = Color.argb(170, 255, 255, 255);
+        circlePaintInner.setColor(semiTransparentWhite);
 		circlePaintInner.setPathEffect(new CornerPathEffect(5.0f));
 
 	}

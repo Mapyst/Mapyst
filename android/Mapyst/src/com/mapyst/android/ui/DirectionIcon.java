@@ -56,10 +56,6 @@ public class DirectionIcon extends FrameLayout {
 	private TextView textView;
 	private ImageView imageView;
 
-	/**
-	 * Constructor
-	 */
-
 	public DirectionIcon(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, null);

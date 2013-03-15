@@ -20,11 +20,6 @@ import android.os.AsyncTask;
 
 public class RouteMakerTask extends	AsyncTask<RouteMakerTaskPrefs, Integer, RouteMakerTaskPrefs> {
 
-	@Override
-	protected void onPreExecute() { // This runs on the UI thread
-		return;
-	}
-
 	// This runs in the background
 	@Override
 	protected RouteMakerTaskPrefs doInBackground(RouteMakerTaskPrefs... prefs) { 
@@ -35,15 +30,10 @@ public class RouteMakerTask extends	AsyncTask<RouteMakerTaskPrefs, Integer, Rout
 		return prefs[0];
 	}
 
-	@Override
-	protected void onProgressUpdate(Integer... progress) { // Called from background thread to UI thread
-		return;
-	}
 
 	@Override
 	protected void onPostExecute(RouteMakerTaskPrefs result) { // Called UI thread
 		result.loaderContext.displayRoute();
-		return;
-	}
+    }
 
 }
