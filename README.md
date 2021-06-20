@@ -16,7 +16,7 @@ The Android application uses binary data files and a campus JSON file to display
 Webapp
 ------
 
-The webapp folder contains the frontend code for the [Mapyt webapp](http://www.mapyst.com/webapp). The frontend displays the popular locations on campus, allows the user to search or get directions based on their preferences, displays a route over google maps, and allows the user to print out the directions. It receives information about CMU's campus, blueprints of the buildings' floors, and route directions from a web api. The directions are calculated on our server using the Route Library. It is written in HTML5, javascript, and css. It uses the Google Maps Web API and jQuery.
+The webapp folder contains the frontend code for the Mapyst webapp. The frontend displays the popular locations on campus, allows the user to search or get directions based on their preferences, displays a route over google maps, and allows the user to print out the directions. It receives information about CMU's campus, blueprints of the buildings' floors, and route directions from a web api. The directions are calculated on our server using the Route Library. It is written in HTML5, javascript, and css. It uses the Google Maps Web API and jQuery.
 
 The javascript code is compiled using Google's Closure Compiler which can be downloaded at https://developers.google.com/closure/compiler/. To compile either modify (the path to the compiler jar) and run the batch file in the js folder or follow Google's Closure Compiler instructions to compile the same files compiled in the batch file.
 
