@@ -5,7 +5,7 @@ Mapyst gives users indoor and outdoor directions around Carnegie Mellon's Pittsb
 
 To create the data for the Carnegie Mellon campus, the Mapyst team started with the detailed blueprints of the buildings. The blueprints were simplified, rotated according to their actual orientation over Google Maps, and compressed. Points and lines, representing a graph, were drawn over the blueprints to create the map of where a person could walk. Each line/edge has a time associated with it indicating the amount of time it takes an average person to walk between those two points. (Note that the data for Carnegie Mellon's campus has not been distributed.)
 
-Creating the data and making sure everything is formatted correctly is complicated and requires tools. Anyone wishing to create a similar application for their campus can contact the Mapyst team at [devs@mapyst.com](mailto:devs@mapyst.com) for help.
+Creating the data and making sure everything is formatted correctly is complicated and requires tools. 
 
 
 Android
